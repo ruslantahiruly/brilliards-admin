@@ -1,2 +1,2 @@
-# brilliards-admin
+# Brilliards
 Brilliards.com admin website
