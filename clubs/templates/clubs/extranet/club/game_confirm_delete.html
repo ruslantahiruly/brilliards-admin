@@ -1,0 +1,11 @@
+<form action="{% url 'clubs:game_delete' game.id %}" method="post" class="game-form">
+  {% csrf_token %}
+  <div>Вы уверены?</div>
+  <div>Вместе с игрой будут удалены ее столы.</div>
+  <div>
+    <button type="submit" name="submit" class="submit game-delete game-button ld-over-inverse" data-id="{{ game.id }}">Да, я уверен<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+  <div>
+    <button type="button" name="button" class="button game-delete-cancel game-button"">Нет, отменить</button>
+  </div>
+</form>

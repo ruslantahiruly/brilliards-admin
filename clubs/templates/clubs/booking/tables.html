@@ -1,0 +1,17 @@
+<div class="row row-center">
+  {% if table_set %}
+    <h3 class="col-24">Выберите свободный стол</h3>
+    {% for table in table_set %}
+      <div class="col-6 choice-button table-choice-button" data-id="{{ table.id }}">Стол #{{ table.name }}</div>
+    {% endfor %}
+  {% else %}
+    <div>Нет свободных столов</div>
+  {% endif %}
+  <div class="is-hidden next-day">{{ next_day }}</div>
+  <div class="is-hidden start-date">{{ start_date }}</div>
+  <div class="is-hidden start-time">{{ start_time }}</div>
+  <div class="is-hidden end-time">{{ end_time }}</div>
+  <div class="is-hidden day-of-the-week">{{ day_of_the_week }}</div>
+  <div class="content-section-info-offset"></div>
+  <button type="button" class="back-button back-button-datetime">Назад</button>
+</div>

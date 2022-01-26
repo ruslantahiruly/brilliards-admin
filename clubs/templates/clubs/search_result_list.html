@@ -1,0 +1,38 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block content %}
+  <main>
+    <div class="container-s">
+      <div class="row content-blocks">
+        {% if search_result_list %}
+          {% for club in search_result_list %}
+            <div class="content-block">
+              <a href="{% url 'clubs:club_detail' club.city.url club.slug %}" class="content-block-title-link">
+                <div class="content-block-image-wrapper">
+                  {% if club.photo_set.all %}
+                    {% for photo in club.photo_set.all %}
+                      <img src="{{ photo.file.url }}" alt="" class="content-block-image">
+                    {% endfor %}
+                  {% else %}
+                    <div class="photo-cap">Фотографий нет</div>
+                  {% endif %}
+                </div>
+                <div class="content-block-info">
+                  <h2 class="content-block-title">{{ club.name }}</h2>
+                  <div class="content-block-info-address">
+                    {{ club.address }}
+                  </div>
+                </div>
+              </a>
+              {% if club.is_available_for_booking %}
+                <a href="{% url 'clubs:booking_create' club.city.url club.slug %}" class="content-block-info-button">Забронировать стол</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% else %}
+          <div>По вашему запросу ничего не найдено.</div>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+{% endblock content %}

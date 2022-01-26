@@ -1,0 +1,43 @@
+{% extends "./base.html" %}
+{% block title %}Экстанет – Календарь – Brilliards{% endblock %}
+{% load static %}
+{% block class2 %}is-active{% endblock %}
+{% block content %}
+  {% if user.is_authenticated %}
+    {% if user.club_set %}
+      {% for club in user.club_set.all %}
+        {% if tables %}
+          <div class="row row-center row-extranet-tables">
+            <div class="owl-carousel owl-theme owl-calendar">
+              {% for table in tables.all %}
+                <!-- <div class="item"> -->
+                  {% if table.id == table_id.id %}
+                    <a href="{% url 'clubs:partner_calendar_table' table.id %}" class="col-extranet-table-col extranet-table active">
+                      <div class="extranet-table-number">Стол #{{ table.name }}</div>
+                      <div class="extranet-table-div">{{ table.game.get_name_display }}</div>
+                      <div class="extranet-table-div">{{ table.hall }}</div>
+                    </a>
+                  {% else %}
+                    <a href="{% url 'clubs:partner_calendar_table' table.id %}" class="col-extranet-table-col extranet-table">
+                      <div class="extranet-table-number">Стол #{{ table.name }}</div>
+                      <div class="extranet-table-div">{{ table.game.get_name_display }}</div>
+                      <div class="extranet-table-div">{{ table.hall }}</div>
+                    </a>
+                  {% endif %}
+                <!-- </div> -->
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        <div id='calendar'></div>
+        <div id="dialog-create" title="Забронировать стол"></div>
+        <div id="dialog-update" title="Бронь"></div>
+        <!-- <div class="help-msg-wrapper">
+          <div class="help-msg">Не забывайте менять статус бронирования при его завершении.<br><span>Для этого кликните по нужному бронированию.</span></div>
+        </div> -->
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    <p>Welcome, new user. Please log in.</p>
+  {% endif %}
+{% endblock content %}

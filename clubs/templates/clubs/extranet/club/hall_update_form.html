@@ -1,0 +1,17 @@
+  <form action="{% url 'clubs:hall_update' hall.id %}" method="post" class="hall-update-form hall-form">
+    <div class="confirm-msg is-hidden">Изменения сохранены</div>
+    {% csrf_token %}
+    <div>
+      {{ form.type.label_tag }}
+      {{ form.type.errors }}
+      {{ form.type }}
+    </div>
+    <div>
+      {{ form.name.label_tag }}
+      {{ form.name.errors }}
+      {{ form.name }}
+    </div>
+    <div>
+      <button type="submit" name="submit" class="submit hall-update ld-over-inverse" data-id="{{ hall.id }}">Сохранить<div class="ld ld-ring ld-spin"></div></button>
+    </div>
+  </form>

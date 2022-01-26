@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="row-center">
+    <div class="col-6 border-block">
+      {% if form.errors %}
+        <p>Ваш логин или пароль не подходят. Попробуйте снова.</p>
+      {% endif %}
+      {% if next %}
+        {% if user.is_authenticated %}
+          <p>Your account doesn't have access to this page. To proceed,
+          please login with an account that has access.</p>
+        {% else %}
+          <p class="block-title">Войдите в аккаунт, чтобы управлять своим клубом</p>
+          <hr class="hr">
+        {% endif %}
+      {% endif %}
+      <form method="post" action="{% url 'login' %}" class="form">
+        {% csrf_token %}
+        <div>
+          <label for="{{ form.username.id_for_label }}" class="form-label">Логин</label>
+          {{ form.username }}
+        </div>
+        <div>
+          <label for="{{ form.password.id_for_label }}" class="form-label">Пароль</label>
+          {{ form.password }}
+        </div>
+        {# Assumes you setup the password_reset view in your URLconf #}
+        <p><a href="{% url 'password_reset' %}">Забыли Ваш пароль?</a></p>
+        <div>
+          <input type="submit" value="Войти" class="form-submit">
+          <input type="hidden" name="next" value="{{ next }}">
+        </div>
+        <a href="{% url 'clubs:club_create' %}" class="form-join">Зарегистрироваться</a>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

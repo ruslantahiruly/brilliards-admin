@@ -1,0 +1,223 @@
+<div class="row row-center working-time">
+  <div class="col-tabs border-block">
+    {% if club.working_times %}
+      <div class="help-msg">Добавьте часы работы для каждого дня недели. Для этого кликните по названию дня недели.</div>
+      <table class="schedule">
+        <tbody>
+          <tr>
+            <th class="schedule-th" data-id="{{ club.id }}" data-day="MO">пн
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "MO" %}
+                  <div class="is-hidden">{{ workingtime.id }}</div>
+                {% endif %}
+              {% endfor %}
+            </th>
+            <th class="schedule-th" data-id="{{ club.id }}" data-day="TU">вт
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "TU" %}
+                  <div class="is-hidden">{{ workingtime.id }}</div>
+                {% endif %}
+              {% endfor %}
+            </th>
+            <th class="schedule-th" data-id="{{ club.id }}" data-day="WE">ср
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "WE" %}
+                  <div class="is-hidden">{{ workingtime.id }}</div>
+                {% endif %}
+              {% endfor %}
+            </th>
+            <th class="schedule-th" data-id="{{ club.id }}" data-day="TH">чт
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "TH" %}
+                  <div class="is-hidden">{{ workingtime.id }}</div>
+                {% endif %}
+              {% endfor %}
+            </th>
+            <th class="schedule-th" data-id="{{ club.id }}" data-day="FR">пт
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "FR" %}
+                  <div class="is-hidden">{{ workingtime.id }}</div>
+                {% endif %}
+              {% endfor %}
+            </th>
+            <th class="schedule-th" data-id="{{ club.id }}" data-day="SA">сб
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "SA" %}
+                  <div class="is-hidden">{{ workingtime.id }}</div>
+                {% endif %}
+              {% endfor %}
+            </th>
+            <th class="schedule-th" data-id="{{ club.id }}" data-day="SU">вс
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "SU" %}
+                  <div class="is-hidden">{{ workingtime.id }}</div>
+                {% endif %}
+              {% endfor %}
+            </th>
+          </tr>
+          <tr>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "MO" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.opening_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "TU" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.opening_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "WE" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.opening_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "TH" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.opening_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "FR" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.opening_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "SA" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.opening_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "SU" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.opening_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "MO" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.closing_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "TU" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.closing_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "WE" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.closing_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "TH" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.closing_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "FR" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.closing_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "SA" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.closing_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+            <td class="schedule-td">
+              {% for workingtime in club.working_times.all %}
+                {% if workingtime.name == "SU" %}
+                  {% if workingtime.day_off == True %}
+                    н/р
+                  {% else %}
+                    {{ workingtime.closing_time|time:"H:i" }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {% endif %}
+    <!-- <div class="row row-center">
+      <button type="button" class="button add-button" data-id="{{ club.id }}">Добавить часы работы</button>
+    </div> -->
+  </div>
+</div>

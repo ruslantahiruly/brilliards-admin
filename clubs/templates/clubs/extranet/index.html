@@ -1,0 +1,43 @@
+{% extends "./base.html" %}
+{% block title %}Экстранет – Главная – Brilliards{% endblock %}
+{% load static %}
+{% block class1 %}is-active{% endblock %}
+{% block content %}
+  {% if user.is_authenticated %}
+    {% if user.club_set %}
+      {% for club in user.club_set.all %}
+        <h1 class="extranet-title">Бильярдный клуб<br><span class="extranet-title-span">{{ club.name }}</span></h1>
+        <div class="row row-center">
+          <div class="club-is-wrapper">
+            {% if club.is_active %}
+              <div class="club-is-open">Бильярдный клуб активирован</div>
+            {% else %}
+              <div class="club-is-closed">Бильярдный клуб не активирован</div>
+            {% endif %}
+          </div>
+          <div class="club-is-wrapper">
+            {% if club.is_available_for_booking %}
+              <div class="club-is-open">Открыт для бронирования</div>
+            {% else %}
+              <div class="club-is-closed">Закрыт для бронирования</div>
+            {% endif %}
+          </div>
+          <div class="col-intro border-block">
+            <h3>Чтобы активировать клуб и открыть его для бронирования, добавьте необходимую информацию</h3>
+            <p class="col-intro-p">Перейдите в раздел "Мой клуб", кнопка "Настроить":</p>
+            <ul class="col-intro-ul">
+              <li>1. Добавьте основную информацию</li>
+              <li>2. Добавьте часы работы</li>
+              <li>3. Добавьте столы</li>
+              <li>4. Добавьте цены</li>
+              <li>5. Добавьте фотографии</li>
+              <li>6. После заполнения всех необходимых данных, активируйте ваш клуб и откройте его для бронирования (во вкладке "Основная информация")</li>
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% else %}
+      <p>Welcome, new user. Please log in.</p>
+  {% endif %}
+{% endblock content %}

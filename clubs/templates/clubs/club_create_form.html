@@ -1,0 +1,44 @@
+{% extends "./base.html" %}
+{% block title %}Регистрация бильярдного клуба – Brilliards{% endblock %}
+{% block content %}
+<main>
+  <div class="container-s">
+    <div class="row content-section-form-row">
+      <div class="content-section content-section-form">
+        <h1 class="content-section-title">Регистрация бильярдного клуба</h1>
+        <form action="{% url 'clubs:club_create' %}" method="post" class="club-create-form">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+          <div>
+            {{ form.city.errors }}
+            {{ form.city }}
+          </div>
+          <div>
+            {{ form.name.errors }}
+            {{ form.name }}
+          </div>
+          <div>
+            {{ form.address.errors }}
+            {{ form.address }}
+          </div>
+          <div>
+            {{ form.phone.errors }}
+            {{ form.phone }}
+          </div>
+          <div>
+            {{ form.email.errors }}
+            {{ form.email }}
+          </div>
+          <div>
+            <button type="submit" name="submit" class="submit ld-over-inverse">Зарегистрировать<div class="ld ld-ring ld-spin"></div></button>
+          </div>
+        </form>
+        <div class="final-screen is-hidden">
+          <!-- <div>Спасибо</div> -->
+          <div>Ваш запрос на регистрацию бильярдного клуба принят и будет обработан в течение 24 часов.<br>Ответ придет на вашу электронную почту.</div>
+        </div>
+      </div><!-- .content-section -->
+    </div>
+ </div>
+</main>
+{% endblock content %}

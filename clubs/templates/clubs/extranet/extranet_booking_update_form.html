@@ -1,0 +1,17 @@
+<div class="row row-center">
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  <form action="{% url 'clubs:extranet_booking_update' booking.id %}" method="post" class="booking-form">
+    {% csrf_token %}
+    <div>
+      {{ form.status.errors }}
+      {{ form.status }}
+    </div>
+    <div class="booking-dates">Начало: {{ booking.start|date:"H:i" }}</div>
+    <div class="booking-dates">Конец: {{ booking.end|date:"H:i" }}</div>
+    <div class="booking-dates">Стоимость: {{ booking.cost }} руб.</div>
+    <div class="booking-dates">Имя клиента: {{ booking.client_name }}</div>
+    <input type="submit" value="Сохранить" class="extranet-booking-submit">
+    <div class="is-hidden extranet-booking-id">{{ booking.id }}</div>
+    <!-- <p>Нажимаю на кнопку "Забронировать", я даю <a href="">согласие на обработку персональных данных</a></p> -->
+  </form>
+</div>

@@ -1,0 +1,117 @@
+<div class="row row-center basic js-pages">
+  <div class="col-tabs border-block">
+    <form action="{% url 'clubs:club_update' club.id %}" method="post" class="club-update-form">
+      <div class="confirm-msg is-hidden">Изменения сохранены</div>
+      {% csrf_token %}
+      <div class="row row-center is-fs">
+        <div class="col-tab col-tab-left">
+          <div>
+            {{ form.city.label_tag }}
+            {{ form.city.errors }}
+            {{ form.city }}
+          </div>
+          <div>
+            {{ form.name.label_tag }}
+            {{ form.name.errors }}
+            {{ form.name }}
+          </div>
+          <div>
+            {{ form.address.label_tag }}
+            {{ form.address.errors }}
+            {{ form.address }}
+          </div>
+          <div>
+            {{ form.phone.label_tag }}
+            {{ form.phone.errors }}
+            {{ form.phone }}
+          </div>
+          <div>
+            {{ form.email.label_tag }}
+            {{ form.email.errors }}
+            {{ form.email }}
+          </div>
+          <div>
+            {{ form.requisites.label_tag }}
+            {{ form.requisites.errors }}
+            {{ form.requisites }}
+          </div>
+        </div>
+        <div class="col-tab is-left">
+          <h3>Удобства и услуги</h3>
+          <div>
+            {{ form.parking.errors }}
+            {{ form.parking }}
+            {{ form.parking.label }}
+          </div>
+          <div>
+            {{ form.wardrobe.errors }}
+            {{ form.wardrobe }}
+            {{ form.wardrobe.label }}
+          </div>
+          <div>
+            {{ form.wc.errors }}
+            {{ form.wc }}
+            {{ form.wc.label }}
+          </div>
+          <div>
+            {{ form.wifi.errors }}
+            {{ form.wifi }}
+            {{ form.wifi.label }}
+          </div>
+          <div>
+            {{ form.air_conditioning.errors }}
+            {{ form.air_conditioning }}
+            {{ form.air_conditioning.label }}
+          </div>
+          <div>
+            {{ form.vip_hall.errors }}
+            {{ form.vip_hall }}
+            {{ form.vip_hall.label }}
+          </div>
+          <div>
+            {{ form.smoking_room.errors }}
+            {{ form.smoking_room }}
+            {{ form.smoking_room.label }}
+          </div>
+          <div>
+            {{ form.barroom.errors }}
+            {{ form.barroom }}
+            {{ form.barroom.label }}
+          </div>
+          <div>
+            {{ form.kitchen.errors }}
+            {{ form.kitchen }}
+            {{ form.kitchen.label }}
+          </div>
+          <div>
+            {{ form.sports_broadcasts.errors }}
+            {{ form.sports_broadcasts }}
+            {{ form.sports_broadcasts.label }}
+          </div>
+          <div>
+            {{ form.table_reservation.errors }}
+            {{ form.table_reservation }}
+            {{ form.table_reservation.label }}
+          </div>
+        </div>
+      </div>
+      {% if club.photos.all %}
+        <div class="left-checkbox-wrapper">
+          <div class="left-checkbox">
+            {{ form.is_active.errors }}
+            {{ form.is_active }}
+            {{ form.is_active.label }}
+          </div>
+          <div class="left-checkbox">
+            {{ form.is_available_for_booking.errors }}
+            {{ form.is_available_for_booking }}
+            {{ form.is_available_for_booking.label }}
+          </div>
+        </div>
+      {% endif %}
+      <div>
+        <button type="submit" name="submit" class="submit button ld-over-inverse" data-id="{{ club.id }}">Сохранить<div class="ld ld-ring ld-spin"></div></button>
+      </div>
+    </form>
+  </div>
+</div>

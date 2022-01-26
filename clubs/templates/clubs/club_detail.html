@@ -1,0 +1,217 @@
+{% extends "./base.html" %}
+{% block title %}Бильярдный клуб {{ club.name }} – {{ club.city }} – Brilliards{% endblock %}
+{% block description %}Бильярдный клуб {{ club.name }}: фото, телефон, адрес, часы работы, цена часа игры, удобства и услуги{% endblock %}
+{% load static %}
+{% block content %}
+  <main>
+    <div class="container-s">
+      {% if club %}
+        <div class="row row-center mb-2">
+          <div class="content-section">
+            <h1 class="content-section-title"><span class="content-section-title-span">{{ club.name }}</span></h1>
+            <div class="row row-top">
+              <div class="content-section-info">
+                {% if club.photos.all %}
+                  <div class="owl-carousel owl-theme content-section-photos">
+                    {% for photo in club.photos.all %}
+                      <div class="item">
+                        <img src="{{ photo.file.url }}" alt="">
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="photo-cap">Фотографий нет</div>
+                {% endif %}
+              </div>
+              <div class="content-section-info">
+                <div class="basic-info-city">{{ club.city }}</div>
+                <div class="basic-info-address">
+                  {{ club.address }}
+                  {% if club.floor %}
+                    ({{ club.floor }} этаж)
+                  {% endif %}
+                </div>
+                {% if club.metro %}
+                  <!-- <div class="basic-info-metro">Метро: {{ club.metro }}</div> -->
+                {% endif %}
+                {% if club.phone %}
+                  <div class="basic-info-phone">{{ club.phone }}</div>
+                {% endif %}
+                {% if club.prices.all %}
+                  {% if price_max != 0 %}
+                    <div class="basic-info-prices">{{ price_min }}–{{ price_max }} руб/час</div>
+                  {% elif price_max == 0 %}
+                    <div class="basic-info-prices">Бесплатно</div>
+                  {% endif %}
+                {% else %}
+                  <div class="basic-info-prices">Нет данных</div>
+                {% endif %}
+                {% if club.working_times.all %}
+                  <div class="basic-info-schedule-wrapper">
+                    {% for key, value in days.items %}
+                      <div class="basic-info-schedule">
+                        <div class="basic-info-schedule-item">{{ key }}</div>
+                        {% if value == "00:00 – 00:00" %}
+                          круглосуточно
+                        {% else %}
+                          {{ value }}
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="basic-info-schedule-wrapper">
+                    <div class="basic-info-schedule">Нет данных</div>
+                  </div>
+                {% endif %}
+                {% if club.works_since %}
+                  <div>Работает с {{ club.works_since }} года</div>
+                {% endif %}
+                <div class="content-section-button-wrapper">
+                  {% if club.is_available_for_booking %}
+                    <a href="{% url 'clubs:booking_create' club.city.url club.slug %}" class="content-section-button">Забронировать стол</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-center mb-2">
+          <div class="content-section">
+            <h3>Удобства и услуги</h3>
+            <div class="content-section-info-amenities">
+              {% if club.parking %}
+                <div class="content-section-info-amenity">Парковка</div>
+              {% endif %}
+              {% if club.wifi %}
+                <div class="content-section-info-amenity">Wi-Fi</div>
+              {% endif %}
+              {% if club.wardrobe %}
+                <div class="content-section-info-amenity">Гардероб</div>
+              {% endif %}
+              {% if club.wc %}
+                <div class="content-section-info-amenity">Туалет</div>
+              {% endif %}
+              {% if club.air_conditioning %}
+                <div class="content-section-info-amenity">Кондиционер</div>
+              {% endif %}
+              {% if club.smoking_room %}
+                <div class="content-section-info-amenity">Зал для курящих</div>
+              {% endif %}
+              {% if club.vip_hall %}
+                <div class="content-section-info-amenity">VIP-зал</div>
+              {% endif %}
+              {% if club.barroom %}
+                <div class="content-section-info-amenity">Бар</div>
+              {% endif %}
+              {% if club.kitchen %}
+                <div class="content-section-info-amenity">Кухня</div>
+              {% endif %}
+              {% if club.sports_broadcasts %}
+                <div class="content-section-info-amenity">Спортивные трансляции</div>
+              {% endif %}
+              {% if club.table_reservation %}
+                <div class="content-section-info-amenity">Бронирование столов</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- {% if club.price_set.all %}
+          <div class="row row-center mb-2">
+            <div class="content-section">
+              <h3>Цены</h3>
+                {% for price in club.price_set.all %}
+
+                  <table>
+                    <tr>
+                      <th>Время</th>
+                      <th>Пн</th>
+                      <th>Вт</th>
+                      <th>Ср</th>
+                      <th>Чт</th>
+                      <th>Пт</th>
+                      <th>Сб</th>
+                      <th>Вс</th>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                  </table>
+
+                  <div>
+                    С {{ price.price_from|time:"H:i" }} до {{ price.price_to|time:"H:i" }} - {{ price.value }} руб.
+                  </div>
+                {% endfor %}
+            </div>
+          </div>
+        {% endif %} -->
+
+        <div class="row row-center mb-2">
+          <div class="content-section content-section-small">
+            <h3>Виды бильярда</h3>
+            {% if games %}
+            <ul>
+              {% for game in games %}
+              <li>
+                {{ game.get_name_display }}
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            Количество столов:
+            {% if club.table_set %}
+              {% if club.table_set.count > 3 %}
+                 {{ club.table_set.count }}
+              {% else %}
+                 нет данных
+              {% endif %}
+            {% endif %}
+            {% if club.game_set.all %}
+              {% for game in club.game_set.all %}
+                <div class="basic-info-metro">
+                  {{ game.get_name_display }}
+                  {% if game.table_set.all %}
+                    {% with tables=game.table_set.count %}
+                      - {{ tables }} столов
+                    {% endwith %}
+                  {% endif %}
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="content-section content-section-small">
+            <h3>Школа бильярда</h3>
+            {% if club.school %}
+              <div class="content-section-info-school">есть</div>
+            {% else %}
+              <div class="content-section-info-school">нет</div>
+            {% endif %}
+            <h3>Турниры</h3>
+            нет данных
+          </div>
+        </div>
+        <div class="row row-center mb-2">
+          <div class="content-section content-section-small">
+            {% if club.social_networks.all %}
+              <h4>Социальные сети</h4>
+              {% for socialnetwork in club.social_networks.all %}
+                <div class="basic-info-metro">
+                  <a href="{{ socialnetwork.address }}" rel="nofollow" target="_blank">{{ socialnetwork.get_name_display }}</a>
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% if club.website %}
+              <hr>
+              <!-- <h4>Официальный сайт</h4> -->
+              <a href="{{ club.website }}" rel="nofollow" target="_blank">Официальный сайт</a>
+              <!-- <a href="{{ club.website }}" rel="nofollow" target="_blank">
+                <svg class="website-icon" data-name="Layer 1" id="Layer_1" width="27" height="27" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:6.5px;}</style></defs><title/><path class="cls-1" d="M64,16A47.5,47.5,0,1,1,16.5,63.5,47.55,47.55,0,0,1,64,16m0-6.5a54,54,0,1,0,54,54,54,54,0,0,0-54-54Z"/><path class="cls-1" d="M65.08,16c2.09,0,5.78,3.66,8.93,11.69,3.71,9.46,5.75,22.18,5.75,35.81s-2,26.35-5.75,35.81c-3.15,8-6.83,11.69-8.93,11.69s-5.78-3.66-8.93-11.69C52.45,89.85,50.4,77.13,50.4,63.5s2-26.35,5.75-35.81C59.31,19.65,63,16,65.08,16m0-6.5c-11.7,0-21.18,24.18-21.18,54s9.48,54,21.18,54,21.18-24.18,21.18-54-9.48-54-21.18-54Z"/><line class="cls-2" x1="17.66" x2="112.5" y1="80.37" y2="80.37"/><line class="cls-2" x1="17.66" x2="112.5" y1="46.62" y2="46.62"/></svg>
+              </a> -->
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </main>
+{% endblock content %}

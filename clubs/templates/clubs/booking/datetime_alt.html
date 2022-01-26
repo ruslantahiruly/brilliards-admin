@@ -1,0 +1,35 @@
+{% extends "../base.html" %}
+{% block title %}Бронирование стола – {{ club.name }} – Brilliards{% endblock %}
+{% block content %}
+  <main>
+    <div class="container-s">
+      <div class="row row-center">
+        <div class="content-section ld-over">
+          <h1 class="content-section-title"><span class="content-section-title-span">{{ club.name }}</span></h1>
+            <h2 class="content-section-subtitle">Бронирование стола</h2>
+            <div class="row row-center row-top">
+              <h3 class="col-24">Выберите дату и время</h3>
+              <div class="col-12 content-section-info">
+                <div id="datepicker"></div>
+                <!-- <div class="datepicker-wrapper">
+                  <input type="text" name="" placeholder="Дата" id="datepicker" autocomplete="off">
+                  <div class="icon-pipe"></div>
+                </div> -->
+              </div>
+              <div class="col-12 content-section-info">
+                <div class="timepicker timepicker-default">
+                  {% for key, value in steps.items %}
+                    <div class="time">{{ value }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="is-hidden game">{{ game }}</div>
+              <div class="content-section-info-offset"></div>
+              <button type="button" class="datetime-button">Далее</button>
+            </div>
+          <div class="ld ld-ring ld-spin"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock content %}

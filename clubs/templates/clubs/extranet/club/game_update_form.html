@@ -1,0 +1,12 @@
+<form action="{% url 'clubs:game_update' game.id %}" method="post" class="game-update-form game-form">
+  <div class="confirm-msg is-hidden">Изменения сохранены</div>
+  {% csrf_token %}
+  <div>
+    {{ form.name.label_tag }}
+    {{ form.name.errors }}
+    {{ form.name }}
+  </div>
+  <div>
+    <button type="submit" name="submit" class="submit game-update ld-over-inverse" data-id="{{ game.id }}">Сохранить<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+</form>

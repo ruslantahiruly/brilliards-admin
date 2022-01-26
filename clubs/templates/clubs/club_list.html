@@ -1,0 +1,56 @@
+{% extends "./base.html" %}
+{% block title %}Бильярдные клубы г. {{ city }} – Brilliards{% endblock %}
+{% load static %}
+{% block search %}
+  <div class="col-12">
+    <form action="{% url 'clubs:search' %}" class="search">
+      <input type="search" name="q" id="" placeholder="Введите название или адрес клуба" autocomplete="off" class="search-input">
+      <button name="button" class="search-button" aria-label="Введите запрос">
+        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="search-button-icon">
+          <g class="style-scope yt-icon">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" class="style-scope yt-icon"></path>
+          </g>
+        </svg>
+      </button>
+    </form>
+  </div>
+{% endblock search %}
+{% block content %}
+  <main>
+    <div class="container-s">
+      {% if club_list %}
+        <h1>Бильярдные клубы г. {{ city }}</h1>
+        <div class="row content-blocks">
+          {% for club in club_list %}
+            <div class="content-block">
+              <a href="{% url 'clubs:club_detail' club.city.url club.slug %}" class="content-block-title-link">
+                <div class="content-block-image-wrapper">
+                  {% if club.photos.all %}
+                    {% for photo in club.photos.all %}
+                      <img src="{{ photo.file.url }}" alt="" class="content-block-image">
+                    {% endfor %}
+                  {% else %}
+                    <div class="photo-cap">Фотографий нет</div>
+                  {% endif %}
+                </div>
+                <div class="content-block-info">
+                  <h2 class="content-block-title">{{ club.name }}</h2>
+                  <div class="content-block-info-address">
+                    {{ club.address }}
+                  </div>
+                </div>
+              </a>
+              {% if club.is_available_for_booking %}
+                <a href="{% url 'clubs:booking_create' club.city.url club.slug %}" class="content-block-info-button">Забронировать стол</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="row row-center">
+          <div>В сервисе в городе {{ city }} пока не зарегистрирован ни один бильярдный клуб.</div>
+        </div>
+      {% endif %}
+    </div>
+  </main>
+{% endblock content %}

@@ -1,0 +1,16 @@
+<form action="{% url 'clubs:hall_create' club.id %}" method="post" class="hall-form">
+  {% csrf_token %}
+  <div>
+    {{ form.type.label }}
+    {{ form.type.errors }}
+    {{ form.type }}
+  </div>
+  <div>
+    {{ form.name.label }}
+    {{ form.name.errors }}
+    {{ form.name }}
+  </div>
+  <div>
+    <button type="submit" name="submit" class="submit hall-submit hall-button ld-over-inverse" data-id="{{ club.id }}">Добавить<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+</form>

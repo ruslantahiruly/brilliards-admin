@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Бильярдные клубы</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'clubs/css/style.css' %}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+            <a href="/" class="logo">Logo</a>
+          </div>
+          <div class="col-2">
+            <a href="{% url 'clubs:join' %}" class="nav-link">Зарегистрировать свой клуб</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container content">
+      <h2>Бильярдные клубы</h2>
+      {% block content %}{% endblock content %}
+      <!-- <a href="/" class="btn btn-success btn-lg">Главная страница</a> -->
+      <!-- <a href="add/" class="btn btn_alt">Добавить клуб</a> -->
+      <!-- <img src="{% static 'clubs/images/coala.jpg' %}" alt="" class="img-thumbnail"> -->
+    </div>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+            <div class="social">
+              <a href="#" class="social__item social__tw"></a>
+              <a href="#" class="social__item social__in"></a>
+              <a href="#" class="social__item social__yt"></a>
+            </div>
+          </div>
+          <div class="col-2">
+
+          </div>
+          <div class="col-2">
+
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+    <!-- <script src="{% static 'clubs/js/bootstrap.min.js' %}"></script> -->
+    <script src="{% static 'clubs/js/main.js' %}"></script>
+  </body>
+</html>

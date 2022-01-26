@@ -1,0 +1,17 @@
+<div class="timepicker-wrapper">
+  {% if workingtime.day_off == False %}
+    <h3>Выберите время</h3>
+    <div class="timepicker">
+      {% for key, value in steps.items %}
+        <div class="time">{{ value }}</div>
+      {% endfor %}
+    </div>
+    <button type="button" class="extranet-datetime-button">Далее</button>
+    <div class="is-hidden day-of-the-week">{{ day_of_the_week }}</div>
+    <div class="is-hidden extranet-booking-day">{{ booking_day }}</div>
+    <div class="is-hidden extranet-booking-table">{{ table }}</div>
+    <div class="is-hidden extranet-booking-club">{{ club }}</div>
+  {% else %}
+   <div>Не работает</div>
+  {% endif %}
+</div>

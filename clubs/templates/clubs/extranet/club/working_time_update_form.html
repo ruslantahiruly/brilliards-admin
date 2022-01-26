@@ -1,0 +1,22 @@
+<form action="{% url 'clubs:working_time_update' workingtime.id %}" method="post" class="working-time-form">
+  <div class="confirm-msg is-hidden">Изменения сохранены</div>
+  {% csrf_token %}
+  <div>
+    {{ form.opening_time.label }}
+    {{ form.opening_time.errors }}
+    {{ form.opening_time }}
+  </div>
+  <div>
+    {{ form.closing_time.label }}
+    {{ form.closing_time.errors }}
+    {{ form.closing_time }}
+  </div>
+  <div class="working-time-form-checkbox">
+    {{ form.day_off.errors }}
+    {{ form.day_off }}
+    {{ form.day_off.label }}
+  </div>
+  <div>
+    <button type="submit" name="submit" class="submit working-time-button ld-over-inverse" data-workingtime="{{ workingtime.id }}">Сохранить<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+</form>

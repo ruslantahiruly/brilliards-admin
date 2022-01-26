@@ -1,0 +1,62 @@
+<div class="row row-center hall">
+  <div class="col-tabs border-block">
+    <div class="help-msg">Шаг 1. Добавьте залы (напр., Общий или VIP) / Шаг 2. В каждый зал добавьте игры / Шаг 3. В каждую игру добавьте столы.</div>
+    <div class="col-8 hall-block">
+      {% if club.halls %}
+        <!-- <h3>Залы</h3> -->
+        <div id="hall-accordion">
+          {% for hall in club.halls.all %}
+            <div class="hall-view" data-id="{{ hall.id }}">
+              <h3>{{ hall.get_type_display }}, {{ hall.name }}</h3>
+              <div class="hall-view-content">
+                <div class="hall-update-wrapper">
+                    <button type="button" class="button hall-update-btn ld-over-inverse" data-id="{{ hall.id }}">Редактировать зал<div class="ld ld-ring ld-spin"></div></button>
+                    <button type="button" class="button hall-delete-button ld-over-inverse" data-id="{{ hall.id }}">Удалить зал<div class="ld ld-ring ld-spin"></div></button>
+                </div>
+                <hr>
+                <div class="game-accordion">
+                  {% if hall.games %}
+                    {% for game in hall.games.all %}
+                      <div class="game-kind-view" data-id="{{ game.id }}">
+                        <h4>{{ game.get_name_display }}</h4>
+                        <div class="game-kind-view-content">
+                          <div class="game-update-wrapper">
+                              <button type="button" class="button game-update-btn ld-over-inverse" data-id="{{ game.id }}">Редактировать игру<div class="ld ld-ring ld-spin"></div></button>
+                              <button type="button" class="button game-delete-button ld-over-inverse" data-id="{{ game.id }}">Удалить игру<div class="ld ld-ring ld-spin"></div></button>
+                          </div>
+                          <hr>
+                          <div class="table-accordion">
+                            {% for table in game.tables.all %}
+                              <div class="table-view" data-id="{{ table.id }}">
+                                <h5>Стол #{{ table.name }}</h5>
+                                <div class="table-content">
+                                  <div class="table-update-wrapper">
+                                      <button type="button" class="button table-update-btn ld-over-inverse" data-id="{{ table.id }}">Редактировать стол<div class="ld ld-ring ld-spin"></div></button>
+                                      <button type="button" class="button table-delete-button ld-over-inverse" data-id="{{ table.id }}">Удалить стол<div class="ld ld-ring ld-spin"></div></button>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          </div>
+                          <div class="row row-center">
+                            <button type="button" class="add-button add-table" data-id="{{ game.id }}">Добавить стол</button>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="row row-center">
+                  <button type="button" class="add-button add-game" data-id="{{ hall.id }}">Добавить игру</button>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="row row-center">
+        <button type="button" class="add-hall" data-id="{{ club.id }}">Добавить зал</button>
+      </div>
+    </div>
+  </div>
+</div>

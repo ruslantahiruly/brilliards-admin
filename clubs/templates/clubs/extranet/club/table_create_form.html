@@ -1,0 +1,51 @@
+<form action="{% url 'clubs:table_create' game.id %}" method="post" class="table-form">
+  {% csrf_token %}
+  <div>
+    {{ form.name.label }}
+    {{ form.name.errors }}
+    {{ form.name }}
+  </div>
+  <div>
+    {{ form.quantity.label }}
+    {{ form.quantity.errors }}
+    {{ form.quantity }}
+  </div>
+  <div>
+    {{ form.size.label }}
+    {{ form.size.errors }}
+    {{ form.size }}
+  </div>
+  <div>
+    {{ form.description.label }}
+    {{ form.description.errors }}
+    {{ form.description }}
+  </div>
+  <div>
+    {{ form.type.label }}
+    {{ form.type.errors }}
+    {{ form.type }}
+  </div>
+  <div>
+    {{ form.brand.label }}
+    {{ form.brand.errors }}
+    {{ form.brand }}
+  </div>
+  <div>
+    {{ form.cloth.label }}
+    {{ form.cloth.errors }}
+    {{ form.cloth }}
+  </div>
+  <div>
+    {{ form.cues.label }}
+    {{ form.cues.errors }}
+    {{ form.cues }}
+  </div>
+  <div>
+    {{ form.balls.label }}
+    {{ form.balls.errors }}
+    {{ form.balls }}
+  </div>
+  <div>
+    <button type="submit" name="submit" class="submit table-submit ld-over-inverse" data-id="{{ game.id }}">Добавить<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+</form>

@@ -1,0 +1,12 @@
+<form action="{% url 'clubs:game_create' hall.id %}" method="post" class="game-form">
+  {% csrf_token %}
+  <div>
+    {{ form.name.label }}
+    {{ form.name.errors }}
+    {{ form.name }}
+  </div>
+  <div>
+    <button type="submit" name="submit" class="submit game-submit ld-over-inverse" data-id="{{ hall.id }}">Добавить<div class="ld ld-ring ld-spin"></div></button>
+    <!-- <input type="submit" name="submit" value="Добавить" class="submit game-kind-submit" data-id="{{ hall.id }}"> -->
+  </div>
+</form>

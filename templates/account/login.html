@@ -1,0 +1,47 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+
+{% block content %}
+
+<main>
+<div class="container-s">
+<div class="row row-center">
+<div class="signin-form-col border-block">
+<p class="block-title">Войдите в аккаунт, чтобы управлять своим бильярдным клубом</p>
+<hr class="hr">
+
+<form class="form-login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  <!-- <div>
+    <label for="{{ form.username.id_for_label }}" class="form-label">Логин</label>
+    {{ form.username }}
+  </div>
+  <div>
+    <label for="{{ form.password.id_for_label }}" class="form-label">Пароль</label>
+    {{ form.password }}
+  </div>
+  <div>
+    <input type="submit" value="Войти" class="form-submit">
+    <input type="hidden" name="next" value="{{ next }}">
+  </div> -->
+  <div class="form-login-wrapper">
+    {{ form.as_p }}
+  </div>
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <!-- <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button> -->
+  <div>
+    <input type="submit" value="Войти" class="form-submit">
+  </div>
+</form>
+
+</div>
+</div>
+
+</div>
+</main>
+{% endblock %}

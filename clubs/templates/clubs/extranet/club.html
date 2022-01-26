@@ -1,0 +1,95 @@
+{% extends "./base.html" %}
+{% block title %}Экстанет – Мой клуб – Brilliards{% endblock %}
+{% load static %}
+{% block class4 %}is-active{% endblock %}
+{% block content %}
+  {% if user.is_authenticated %}
+    {% if user.club_set %}
+      {% for club in user.club_set.all %}
+        <div class="row row-center">
+          <h3 class="extranet-club-h3">На данный момент ваш бильярдный клуб выглядит так</h3>
+          <div class="content-section">
+            <h1 class="content-section-title"><span class="content-section-title-span">{{ club.name }}</span></h1>
+            <button type="button" class="button edit-button" data-id="{{ club.id }}">Настроить</button>
+            <div class="row row-top">
+              <div class="content-section-info">
+                {% if club.photos.all %}
+                  <div class="owl-carousel owl-theme content-section-photos">
+                    {% for photo in club.photos.all %}
+                      <div class="item">
+                        <img src="{{ photo.file.url }}" alt="">
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="photo-cap">Фотографий нет</div>
+                {% endif %}
+                <!-- <div class="content-section-info-amenities">
+                  {% if club.parking %}
+                    <div class="content-section-info-amenity"><i class="fas fa-parking fa-2x"></i></div>
+                  {% endif %}
+                  {% if club.parking %}
+                    <div class="content-section-info-amenity"><i class="fas fa-parking fa-2x"></i></div>
+                  {% endif %}
+                </div> -->
+              </div>
+              <div class="content-section-info">
+                <div class="basic-info-city">{{ club.city }}</div>
+                <div class="basic-info-address">
+                  {{ club.address }}
+                </div>
+                {% if club.metro %}
+                  <div class="basic-info-metro">м.{{ club.metro }}</div>
+                {% endif %}
+                {% if club.phone %}
+                  <div class="basic-info-phone">{{ club.phone }}</div>
+                {% endif %}
+                {% if club.prices.all %}
+                  <div class="basic-info-prices">{{ price_min }}–{{ price_max }} руб.</div>
+                {% else %}
+                  <div class="basic-info-prices">Нет данных</div>
+                {% endif %}
+                {% if club.working_times.all %}
+                  <div class="basic-info-schedule-wrapper">
+                    {% for key, value in days.items %}
+                      <div class="basic-info-schedule">
+                        <div class="basic-info-schedule-item">{{ key }}</div>
+                        {% if value == "00:00 – 00:00" %}
+                          круглосуточно
+                        {% else %}
+                          {{ value }}
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="basic-info-schedule-wrapper">
+                    <div class="basic-info-schedule">Нет данных</div>
+                  </div>
+                {% endif %}
+                <div class="content-section-button-wrapper">
+                  {% if club.is_available_for_booking %}
+                    <button class="content-section-button">Забронировать стол</button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-center is-hidden">
+          <div class="col-tabs">
+            <div class="tabs-panel">
+              <div class="tabs-item tab-basic active" data-id="{{ club.id }}">Основная информация</div>
+              <div class="tabs-item tab-working-time" data-id="{{ club.id }}">Часы работы</div>
+              <div class="tabs-item tab-equipment" data-id="{{ club.id }}">Столы</div>
+              <div class="tabs-item tab-prices" data-id="{{ club.id }}">Цены</div>
+              <div class="tabs-item tab-photos" data-id="{{ club.id }}">Фотографии</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    <p>Welcome, new user. Please log in.</p>
+  {% endif %}
+{% endblock content %}

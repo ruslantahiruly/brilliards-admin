@@ -1,0 +1,86 @@
+{% extends "./base.html" %}
+{% block title %}Экстанет – Бронирования – Brilliards{% endblock %}
+{% load static %}
+{% block class3 %}is-active{% endblock %}
+{% block content %}
+  {% if user.is_authenticated %}
+      <!-- <p>Welcome, {{ user.username }}. Thanks for logging in.</p> -->
+      {% if user.club_set %}
+        {% for club in user.club_set.all %}
+          <div class="row row-center">
+            <div class="col-24">
+              <table class="reservations">
+                <tbody>
+                  <tr class="reservations-tr">
+                    <th class="reservations-th">Зал</th>
+                    <th class="reservations-th">Игра</th>
+                    <th class="reservations-th">Стол</th>
+                    <th class="reservations-th">Дата</th>
+                    <th class="reservations-th">Начало</th>
+                    <th class="reservations-th">Конец</th>
+                    <th class="reservations-th">Стоимость</th>
+                    <th class="reservations-th">Комиссия</th>
+                    <th class="reservations-th">Кодовый номер</th>
+                    <th class="reservations-th">Статус</th>
+                  </tr>
+                  {% if bookings %}
+                    {% for booking in bookings %}
+                      <tr>
+                        <td>{{ booking.hall }}</td>
+                        <td>{{ booking.game }}</td>
+                        <td>Стол #{{ booking.table.name }}</td>
+                        <td>{{ booking.start.date }}</td>
+                        <td>{{ booking.start.time|time:"H:i" }}</td>
+                        <td>{{ booking.end.time|time:"H:i" }}</td>
+                        <td>{{ booking.cost }}</td>
+                        <td>{{ booking.commission }}</td>
+                        <td>{{ booking.code_number }}</td>
+                        <td>{{ booking.get_status_display }}</td>
+                      </tr>
+                    {% endfor %}
+                  {% else %}
+                    <tr>
+                      <td colspan="10">Бронирований не найдено</td>
+                    </tr>
+                  {% endif %}
+
+
+                  <!-- {% for hall in club.hall_set.all %}
+                    {% for game in hall.game_set.all %}
+                      {% for table in game.table_set.all %}
+                        {% if table.booking_set %}
+                          {% for booking in table.booking_set.all %}
+                            <tr>
+                              <td>{{ booking.client_name }}</td>
+                              <td>{{ hall }}</td>
+                              <td>Стол #{{ booking.table.name }}</td>
+                              <td>{{ booking.start.date }}</td>
+                              <td>{{ booking.start.time|time:"H:i" }}</td>
+                              <td>{{ booking.end.time|time:"H:i" }}</td>
+                              <td>{{ booking.created }}</td>
+                              <td>{{ booking.cost }}</td>
+                              <td>25</td>
+                              <td>{{ booking.code_number }}</td>
+                              <td>{{ booking.get_status_display }}</td>
+                            </tr>
+                          {% endfor %}
+                        {% else %}
+                          <tr>
+                            <td>За данный период броней нет</td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    {% endfor %}
+                  {% endfor %} -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+  {% else %}
+      <p>Welcome, new user. Please log in.</p>
+  {% endif %}
+
+
+{% endblock content %}

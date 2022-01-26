@@ -1,0 +1,11 @@
+<form action="{% url 'clubs:price_delete' price.id %}" method="post" class="price-form">
+  {% csrf_token %}
+  <div>Вы уверены?</div>
+  <!-- <div>Вместе с игрой будут удалены ее столы.</div> -->
+  <div>
+    <button type="submit" name="submit" class="submit price-delete price-button ld-over-inverse" data-id="{{ price.id }}">Да, я уверен<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+  <div>
+    <button type="button" name="button" class="button price-delete-cancel price-button"">Нет, отменить</button>
+  </div>
+</form>

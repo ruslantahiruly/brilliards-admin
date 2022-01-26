@@ -1,0 +1,11 @@
+<form action="{% url 'clubs:hall_delete' hall.id %}" method="post" class="hall-form">
+  {% csrf_token %}
+  <div>Вы уверены?</div>
+  <div>Вместе с залом будут удалены его игры и столы.</div>
+  <div>
+    <button type="submit" name="submit" class="submit hall-delete hall-button ld-over-inverse" data-id="{{ hall.id }}">Да, я уверен<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+  <div>
+    <button type="button" name="button" class="button hall-delete-cancel hall-button"">Нет, отменить</button>
+  </div>
+</form>

@@ -1,0 +1,52 @@
+<form action="{% url 'clubs:table_update' table.id %}" method="post" class="table-update-form table-form">
+  <div class="confirm-msg is-hidden">Изменения сохранены</div>
+  {% csrf_token %}
+  <div>
+    {{ form.name.label_tag }}
+    {{ form.name.errors }}
+    {{ form.name }}
+  </div>
+  <div>
+    {{ form.quantity.label }}
+    {{ form.quantity.errors }}
+    {{ form.quantity }}
+  </div>
+  <div>
+    {{ form.size.label_tag }}
+    {{ form.size.errors }}
+    {{ form.size }}
+  </div>
+  <div>
+    {{ form.description.label }}
+    {{ form.description.errors }}
+    {{ form.description }}
+  </div>
+  <div>
+    {{ form.type.label }}
+    {{ form.type.errors }}
+    {{ form.type }}
+  </div>
+  <div>
+    {{ form.brand.label }}
+    {{ form.brand.errors }}
+    {{ form.brand }}
+  </div>
+  <div>
+    {{ form.cloth.label }}
+    {{ form.cloth.errors }}
+    {{ form.cloth }}
+  </div>
+  <div>
+    {{ form.cues.label }}
+    {{ form.cues.errors }}
+    {{ form.cues }}
+  </div>
+  <div>
+    {{ form.balls.label }}
+    {{ form.balls.errors }}
+    {{ form.balls }}
+  </div>
+  <div>
+    <button type="submit" name="submit" class="submit table-update ld-over-inverse" data-id="{{ table.id }}">Сохранить<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+</form>

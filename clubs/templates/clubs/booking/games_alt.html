@@ -1,0 +1,23 @@
+{% extends "../base.html" %}
+{% block title %}Бронирование стола – {{ club.name }} – Brilliards{% endblock %}
+{% block content %}
+  <main>
+    <div class="container-s">
+      <div class="row row-center">
+        <div class="content-section ld-over">
+          <h1 class="content-section-title"><span class="content-section-title-span">{{ club.name }}</span></h1>
+            <h2 class="content-section-subtitle">Бронирование стола</h2>
+          <div class="row row-center">
+            {% if game_set %}
+              <h3 class="col-24">Выберите игру</h3>
+              {% for game in game_set %}
+                <div class="col-6 choice-button game-choice-button" data-id="{{ game.id }}">{{ game.get_name_display }}</div>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="ld ld-ring ld-spin"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock content %}

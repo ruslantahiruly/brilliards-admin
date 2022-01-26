@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="t-white">
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Экстанет – Brilliards{% endblock %}</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/jquery-ui/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/jquery-ui/jquery-ui.theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/formstyler/formstyler.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/formstyler/formstyler.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/owlcarousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/owlcarousel/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/fullcalendar/core/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/fullcalendar/daygrid/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/fullcalendar/timegrid/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/loading/loading.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/loading/loading-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'safari-pinned-tab.svg' %}" color="#ff0000">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body class="t-white">
+    <div class="l-wrapper">
+      <div class="l-content">
+        <header class="l-header">
+          <div class="container">
+            <div class="row">
+              <div class="col-extranet-logo is-left">
+                <a href="/" class="logo" title="Главная страница Brilliards">Brilliards</a>
+              </div>
+              <div class="col-extranet-menu">
+                <div class="row row-center menu">
+                  <div class="col-extranet-menu-col menu-item"><a href="{% url 'clubs:partner' %}" class="menu-link {% block class1 %}{% endblock %}">Главная</a></div>
+                  <div class="col-extranet-menu-col menu-item"><a href="{% url 'clubs:partner_calendar' %}" class="menu-link {% block class2 %}{% endblock %}">Календарь</a></div>
+                  <div class="col-extranet-menu-col menu-item"><a href="{% url 'clubs:partner_bookings' %}" class="menu-link {% block class3 %}{% endblock %}">Бронирования</a></div>
+                  <div class="col-extranet-menu-col menu-item"><a href="{% url 'clubs:partner_club' %}" class="menu-link {% block class4 %}{% endblock %}">Мой клуб</a></div>
+                  <!-- <div class="col-extranet-menu-col menu-item"><a href="#" class="menu-link {% block class5 %}{% endblock %}">Финансы</a></div> -->
+                </div>
+              </div>
+              <div class="col-extranet-logout is-right">
+                <a href="{% url 'account_logout' %}" class="logout">Выйти</a>
+              </div>
+            </div>
+          </div>
+        </header>
+        <main>
+          <div class="container-s">
+            {% block content %}{% endblock content %}
+          </div>
+        </main>
+      </div>
+      <footer class="l-footer">
+        <div class="container">
+          <div class="row row-footer">
+            <div class="copyright-col">
+              © 2019 Brilliards - все права защищены.
+            </div>
+            <div class="sign-col">
+              <a href="mailto:partner@brilliards.com" target="_blank">Обратная связь</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'clubs/js/lib/jquery/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/jquery/jquery-ui/datepicker-ru.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/jquery/formstyler/formstyler.min.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/jquery/inputmask/jquery.inputmask.bundle.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/jquery/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/fullcalendar/core/main.min.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/fullcalendar/core/locales/ru.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/fullcalendar/daygrid/main.min.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/fullcalendar/timegrid/main.min.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/fullcalendar/interaction/main.min.js' %}"></script>
+    <script>
+      function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                  var cookie = jQuery.trim(cookies[i]);
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+      }
+      var csrftoken = getCookie('csrftoken');
+
+      function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+
+      $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+          defaultView: 'dayGridMonth',
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridDay'
+          },
+          locale: 'ru',
+          timeZone: 'UTC',
+          events: [
+            {% for booking in bookings %}
+              {
+                title: '{{ booking.client_name}}',
+                start: '{{ booking.start|date:"c" }}',
+                end: '{{ booking.end|date:"c" }}',
+                id: '{{ booking.id }}',
+                // allDay : false,
+                // color: '#f00',
+              },
+            {% endfor %}
+          ],
+          // dateClick: function(info) {
+          //   var weekday=new Array(7);
+          //   weekday[1]="MO";
+          //   weekday[2]="TU";
+          //   weekday[3]="WE";
+          //   weekday[4]="TH";
+          //   weekday[5]="FR";
+          //   weekday[6]="SA";
+          //   weekday[0]="SU";
+          //   var day = info.date.getUTCDay();
+          //   var dayOfTheWeek = weekday[day];
+          //   var club = "{{ club.id }}";
+          //   var table = "{{ table_id.id }}";
+          //   var bookingDay = info.dateStr;
+          //   // console.log(table);
+          //   $.ajax({
+          //     type: 'GET',
+          //     url: '/partner/'+club+'/booking/',
+          //     data: {
+          //       day_of_the_week: dayOfTheWeek,
+          //       booking_day: bookingDay,
+          //       table: table,
+          //       club: club,
+          //     },
+          //     success: function (data) {
+          //       var dialog = $('#dialog-create');
+          //       dialog.html(data);
+          //       // var timepicker = $('#dialog-create').find('.timepicker-wrapper');
+          //       // timepicker.replaceWith(data);
+          //       $('#dialog-create').dialog('open');
+          //       // col.replaceWith(data);
+          //     },
+          //     error: function () {
+          //       // console.log('error');
+          //     },
+          //   });
+          // },
+          // eventClick: function(info) {
+          //   var booking = info.event.id;
+          //   $('#dialog-update').dialog('open');
+          //   // $('#dialog-update').find('.date').text(date);
+          //   $.ajax({
+          //     type: 'GET',
+          //     url: '/partner/booking/'+booking+'/',
+          //     // data: {
+          //     //   day_of_the_week: dayOfTheWeek,
+          //     //   booking_day: bookingDay,
+          //     //   table: table,
+          //     //   club: club,
+          //     // },
+          //     success: function (data) {
+          //       var dialog = $('#dialog-update');
+          //       dialog.html(data);
+          //       // var timepicker = $('#dialog-create').find('.timepicker-wrapper');
+          //       // timepicker.replaceWith(data);
+          //       $('#dialog-update').dialog('open');
+          //       // col.replaceWith(data);
+          //     },
+          //     error: function () {
+          //       console.log('error');
+          //     },
+          //   });
+          //   // change the border color just for fun
+          //   // info.el.style.borderColor = 'red';
+          // },
+        });
+        calendar.render();
+      });
+
+      // $('#calendar').fullCalendar({
+      //   header: {
+      //     left: 'prev,next today',
+      //     center: 'title',
+      //     right: 'month,agendaDay'
+      //   },
+      //   navLinks: true,
+      //   selectable: true,
+      //   locale: 'ru',
+      //   events: [
+      //     {% for booking in bookings %}
+      //         {
+      //             title: "{{ booking.id}}",
+      //             start: '{{ booking.start|date:"Y-m-d" }}',
+      //             end: '{{ booking.end|date:"Y-m-d" }}',
+      //             // allDay : false,
+      //             // color: '#f00',
+      //         },
+      //     {% endfor %}
+      //   ],
+      //   dayClick: function(date, jsEvent, view) {
+      //     var clickDate = date.format();
+      //     $('#dialog').dialog();
+      //   },
+      // });
+
+      // dayClick: function(date, jsEvent, view) {
+      //   var clickDate = date.format();
+      //   $('#dialog').dialog('open');
+      //   // $.ajax({
+      //   //   ulr: 'add_booking',
+      //   //   type: 'POST',
+      //   //
+      //   // });
+      // }
+
+      // $('.dialog-submit').click(function (e) {
+      //   e.preventDefault();
+      //   $.ajax({
+      //     url: '/book/',
+      //     type: 'POST',
+      //     // contentType : 'application/json',
+      //     data: {
+      //       click_date: $('.dialog-date').val(),
+      //     },
+      //     success: function (data) {
+      //       console.log('success');
+      //     },
+      //     error: function () {
+      //       console.log('error');
+      //     },
+      //   });
+      // });
+    </script>
+    <script src="{% static 'clubs/js/main.js' %}"></script>
+  </body>
+</html>

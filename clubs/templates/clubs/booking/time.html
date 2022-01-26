@@ -1,0 +1,12 @@
+<div class="col-12 content-section-info">
+  {% if workingtime.day_off == False %}
+    <div class="timepicker">
+      {% for key, value in steps.items %}
+        <div class="time">{{ value|time:"H:i" }}</div>
+      {% endfor %}
+    </div>
+  {% else %}
+   <div>Не работает</div>
+  {% endif %}
+  <div class="is-hidden day-of-the-week">{{ day_of_the_week }}</div>
+</div>

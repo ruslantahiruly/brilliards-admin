@@ -1,0 +1,15 @@
+<form action="{% url 'clubs:photo_create' club.id %}" enctype="multipart/form-data" method="post" class="photo-form">
+  {% csrf_token %}
+  <div class="is-hidden">
+    {{ form.club.label }}
+    {{ form.club.errors }}
+    {{ form.club }}
+  </div>
+  <div>
+    {{ form.file.errors }}
+    {{ form.file }}
+  </div>
+  <div>
+    <button type="submit" name="submit" class="submit photo-submit ld-over-inverse" data-id="{{ club.id }}">Добавить<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+</form>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Brilliards – онлайн-бронирование столов в бильярдных клубах{% endblock %}</title>
+    <meta name="description" content="">
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/jquery-ui/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/jquery-ui/jquery-ui.theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/formstyler/formstyler.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/formstyler/formstyler.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/owlcarousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/lib/owlcarousel/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'safari-pinned-tab.svg' %}" color="#ff0000">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <div class="l-wrapper">
+      <div class="l-content">
+        <header class="l-header">
+          <div class="container">
+            <div class="row">
+              <div class="col-header is-left">
+                <a href="/" class="logo" title="Главная страница Brilliards">Brilliards</a>
+              </div>
+              <!-- {% block search %}{% endblock search %} -->
+              <div class="col-header is-right">
+                <div class="city-selector">
+                  <div class="l-main">
+                    <div class="container">
+                      <div class="row row-center">
+                        <div class="col-city-selector">
+                          <div class="row city-selector-title mb-05">Выбор города</div>
+                          {% if city_list %}
+                            {% for city in city_list %}
+                              <div class="row row-center">
+                                <div data-city="{{ city.url }}" class="city-selector-item m-02">{{ city.name }}</div>
+                              </div>
+                            {% endfor %}
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="city-selector-close"></div>
+                </div>
+                <div class="city-switcher-wrapper">
+                  <div class="city-switcher">
+                    {% if city %}
+                      {{ city.name }}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        {% block content %}{% endblock content %}
+      </div>
+      <footer class="l-footer">
+        <div class="container">
+          <div class="row row-footer">
+            <div class="copyright-col">
+              © 2019 Brilliards - все права защищены.
+            </div>
+            <div class="sign-col">
+              <a href="{% url 'clubs:partner' %}" class="nav-link">Войти в Экстранет</a>
+              <a href="{% url 'clubs:club_create' %}" class="nav-link">Зарегистрировать свой клуб</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'clubs/js/lib/jquery/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/jquery/jquery-ui/datepicker-ru.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/jquery/formstyler/formstyler.min.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/jquery/inputmask/jquery.inputmask.bundle.js' %}"></script>
+    <script src="{% static 'clubs/js/lib/jquery/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'clubs/js/main.js' %}"></script>
+  </body>
+</html>

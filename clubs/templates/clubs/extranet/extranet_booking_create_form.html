@@ -1,0 +1,44 @@
+<div class="row row-center">
+  <!-- <div class="cost">Стоимость: {{ cost }} руб.</div> -->
+  <div class="booking-dates">День: {{ start|date:"l d F" }}</div>
+  <div class="booking-dates">Начало: {{ start|date:"H:i" }}</div>
+  <div class="booking-dates">Конец: {{ end|date:"H:i" }}</div>
+  <div class="booking-dates">
+    {% if cost == 0 %}
+      Стоимость: Нет данных
+    {% else %}
+      Стоимость: {{ cost }} руб.
+    {% endif %}
+  </div>
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  <form action="{% url 'clubs:extranet_booking_create' club.id %}" method="post" class="booking-form">
+    {% csrf_token %}
+    <div class="is-hidden">
+      {{ form.table.errors }}
+      {{ form.table }}
+    </div>
+    <div class="is-hidden">
+      {{ form.start.errors }}
+      {{ form.start }}
+    </div>
+    <div class="is-hidden">
+      {{ form.end.errors }}
+      {{ form.end }}
+    </div>
+    <div>
+      {{ form.client_name.errors }}
+      {{ form.client_name }}
+    </div>
+    <div class="is-hidden">
+      {{ form.cost.errors }}
+      {{ form.cost }}
+    </div>
+    <input type="submit" value="Забронировать" class="extranet-booking-submit">
+    <div class="is-hidden extranet-booking-club">{{ club.id }}</div>
+    <!-- <p>Нажимаю на кнопку "Забронировать", я даю <a href="">согласие на обработку персональных данных</a></p> -->
+  </form>
+  <div class="final-screen is-hidden">
+    <div>Спасибо за бронирование</div>
+    <div>Ваш заказ: <span class="final-screen-order"></span></div>
+  </div>
+</div>

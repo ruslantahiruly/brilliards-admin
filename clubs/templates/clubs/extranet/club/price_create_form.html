@@ -1,0 +1,41 @@
+<form action="{% url 'clubs:price_create' club.id %}" method="post" class="price-form">
+  {% csrf_token %}
+  <div class="is-hidden">
+    {{ form.club.label_tag }}
+    {{ form.club.errors }}
+    {{ form.club }}
+  </div>
+  <div>
+    {{ form.working_times.label_tag }}
+    {{ form.working_times.errors }}
+    {{ form.working_times }}
+  </div>
+  <div>
+    {{ form.tables.label_tag }}
+    {{ form.tables.errors }}
+    {{ form.tables }}
+  </div>
+  <div>
+    {{ form.price_from.label_tag }}
+    {{ form.price_from.errors }}
+    {{ form.price_from }}
+  </div>
+  <div>
+    {{ form.price_to.label_tag }}
+    {{ form.price_to.errors }}
+    {{ form.price_to }}
+  </div>
+  <div>
+    {{ form.value.label_tag }}
+    {{ form.value.errors }}
+    {{ form.value }}
+  </div>
+  <div>
+    {{ form.description.label_tag }}
+    {{ form.description.errors }}
+    {{ form.description }}
+  </div>
+  <div>
+    <button type="submit" name="submit" class="submit price-submit ld-over-inverse" data-id="{{ club.id }}">Добавить<div class="ld ld-ring ld-spin"></div></button>
+  </div>
+</form>

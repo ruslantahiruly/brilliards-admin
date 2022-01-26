@@ -1,0 +1,54 @@
+<div class="row row-center price">
+  <div class="col-tabs border-block">
+    <div class="help-msg">Добавьте цены. Например, с понедельника по пятницу столы 1, 2, 3 с 12:00 до 18:00 цена 300 руб/час. Чтобы выбрать несколько дней и столов, удерживайте "Control" (или "Command" на Mac).</div>
+    <div class="price-accordion">
+      {% for price in prices %}
+        <div class="price-view" data-id="{{ price.id }}">
+          <h3>Цена {{ price.price_from|time:"H:i" }}-{{ price.price_to|time:"H:i" }}</h3>
+          <div class="table-content">
+            <div class="table-content-price">
+              <span class="table-content-price-span">Цена:</span> {{ price.value }} руб.
+            </div>
+            <div class="table-content-days">
+              <h5>Дни:</h5>
+              <ul>
+                {% for working_times in price.working_times.all %}
+                  <li>
+                    {{ working_times.get_name_display }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="table-content-tables">
+              <h5>Столы:</h5>
+              <ul>
+                {% for tables in price.tables.all %}
+                  <li>
+                    Стол #{{ tables.name }}, {{ tables.game }}, {{ tables.hall }}, {{ tables.hall.name }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <hr>
+            <div class="price-update-wrapper">
+                <button type="button" class="button price-update-btn ld-over-inverse" data-id="{{ price.id }}">Редактировать цену<div class="ld ld-ring ld-spin"></div></button>
+                <button type="button" class="button price-delete-button ld-over-inverse" data-id="{{ price.id }}">Удалить цену<div class="ld ld-ring ld-spin"></div></button>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <!-- {% for price in prices %}
+      <div>
+        <h4>Цена {{ price.value }}руб.</h4>
+        <div>{{ price.tables.all }}</div>
+        <div>{{ price.working_times }}</div>
+        <div>{{ price.price_from }}</div>
+        <div>{{ price.price_to }}</div>
+      </div>
+    {% endfor %} -->
+    <div class="row row-center">
+      <button type="button" class="button add-button add-price" data-id="{{ club.id }}">Добавить цену</button>
+    </div>
+  </div>
+</div>
